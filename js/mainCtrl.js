@@ -8,10 +8,16 @@ app.controller('mainCtrl', function($scope, parseService){
   //You'll then save the result of that request to your controllers $scope as
   // messages ($scope.messages)
 
-  var getParseData = function() {
-    var messages = parseService.getData();
-    $scope.messages = messages;
+  $scope.getParseData = function() {
+    parseService.getData()
+      .then(function(response) {
+           console.log(response.data.results);
+        $scope.messages = response.data.results;
+       
+    });
   };
+
+  
 
 
   //The postData function will take whatever the user typed in (hint: look at the html and
@@ -19,15 +25,17 @@ app.controller('mainCtrl', function($scope, parseService){
   //pass that text to the postData method on the parseService object which will then post it
   // to the parse backend.
 
-  var postData = function() {
-    var message = parseService.postData();
+  $scope.postData = function() {
+    var message = $scope.message;
+    parseService.postData(message);
 
   };
 
+  // $scope.getParseData();
 
   //uncomment this code when your getParseData function is finished
   //This goes and gets new data every second, which mimicking a chat room experience.
-  // setInterval(function(){
-  //   $scope.getParseData();
-  // }, 1500)
+  setInterval(function(){
+    $scope.getParseData();
+    }, 1500)
 })

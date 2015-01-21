@@ -19,26 +19,26 @@ app.service('parseService', function($http){
   
   //postData method here
   
-  var postData = function() {
+  this.postData = function(message) {
     return $http ({
       method: 'POST',
       url: 'https://api.parse.com/1/classes/chat', 
-      headers: {
-        'defaultHeaders.js'
-        },
+      // headers: {
+      //   'defaultHeaders.js'
+      //   },
       data: {
         text: message
       }
     });
   };
-  postData();
+ 
+
   //getData method here
 
-  var getData = function() {
+  this.getData = function() {
     return $http ({
       method: 'GET',
       url: 'https://api.parse.com/1/classes/chat?order=-createdAt',
     });
    };
- getData();
 });
