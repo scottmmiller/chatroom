@@ -27,7 +27,7 @@ app.service('parseService', function($http){
       //   'defaultHeaders.js'
       //   },
       data: {
-        text: message
+        text: message,
       }
     });
   };

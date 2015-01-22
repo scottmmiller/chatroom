@@ -13,7 +13,7 @@ app.controller('mainCtrl', function($scope, parseService){
       .then(function(response) {
            console.log(response.data.results);
         $scope.messages = response.data.results;
-       
+
     });
   };
 
@@ -27,8 +27,13 @@ app.controller('mainCtrl', function($scope, parseService){
 
   $scope.postData = function() {
     var message = $scope.message;
-    parseService.postData(message);
-
+    parseService.postData(message).then(function(response) {
+      console.log(response);
+      if(ressponse.status > 199 && response.status < 300 {
+        alert('Your message went through the internet');
+      });
+    };
+    $scope.message = '';
   };
 
   // $scope.getParseData();
